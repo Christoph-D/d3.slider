@@ -4,27 +4,10 @@
     Copyright (c) 2013, Bjorn Sandvik - http://blog.thematicmapping.org
     BSD license: http://opensource.org/licenses/BSD-3-Clause
 */
-(function (root, factory) {
-  if (typeof define === 'function' && define.amd) {
-    // AMD. Register as an anonymous module.
-    define(['d3'], factory);
-  } else if (typeof exports === 'object') {
-    if (process.browser) {
-      // Browserify. Import css too using cssify.
-      require('./d3.slider.css');
-    }
-    // Node. Does not work with strict CommonJS, but
-    // only CommonJS-like environments that support module.exports,
-    // like Node.
-    module.exports = factory(require('d3'));
-  } else {
-    // Browser globals (root is window)
-    root.d3.slider = factory(root.d3);
-  }
-}(this, function (d3) {
-return function module() {
-  "use strict";
+import * as d3 from "d3";
+import "./d3.slider.css";
 
+export default function newSlider() {
   // Public variables width default settings
   var min = 0,
       max = 100,
@@ -253,8 +236,7 @@ return function module() {
       }
 
     });
-
-  }
+  }  // newSlider()
 
   // Move slider handle on click/drag
   function moveHandle(newValue) {
@@ -422,6 +404,4 @@ return function module() {
   };
 
   return slider;
-
 }
-}));
